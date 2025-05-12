@@ -16,13 +16,13 @@ public class JwtAuthenticationServiceImpl implements JwtAuthenticationService {
     @Override
     public UserDetails authenticateToken(String token) {
         // Lấy username từ token
-        String username = getUsernameFromToken(token);
+        String username = jwtService.extractUsername(token);
 
         // Load user từ database
         UserDetails userDetails = userDetailsService.loadUserByUsername(username);
 
         // Kiểm tra token hợp lệ
-        if (validateToken(token, userDetails)) {
+        if (jwtService.isTokenValid(token, userDetails)) {
             return userDetails;
         }
 
@@ -41,11 +41,11 @@ public class JwtAuthenticationServiceImpl implements JwtAuthenticationService {
 
     @Override
     public boolean validateToken(String token, UserDetails userDetails) {
-        return jwtService.validateToken(token, userDetails);
+        return jwtService.isTokenValid(token, userDetails);
     }
 
     @Override
     public String getUsernameFromToken(String token) {
-        return jwtService.getUsernameFromToken(token);
+        return jwtService.extractUsername(token);
     }
 }

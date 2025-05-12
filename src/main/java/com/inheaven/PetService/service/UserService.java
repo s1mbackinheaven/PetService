@@ -12,6 +12,9 @@ import com.inheaven.PetService.dto.AuthRequest;
 import com.inheaven.PetService.dto.AuthResponse;
 import com.inheaven.PetService.dto.UserRegister;
 import com.inheaven.PetService.security.JwtService;
+import com.inheaven.PetService.dto.UserDTO;
+import com.inheaven.PetService.dto.ChangePasswordRequest;
+import com.inheaven.PetService.dto.MessageResponse;
 
 import java.util.List;
 
@@ -82,6 +85,11 @@ public class UserService {
         return userRepository.findAll();
     }
 
+    // Lấy tất cả bác sĩ (users có role là DOCTOR)
+    public List<User> getAllDoctors() {
+        return userRepository.findByRole("DOCTOR");
+    }
+
     // Lấy user theo ID
     public User getUserById(Long id) {
         return userRepository.findById(id)
@@ -96,17 +104,16 @@ public class UserService {
 
     // Cập nhật thông tin user
     @Transactional
-    public User updateUser(Long id, User userDetails) {
+    public User updateUser(Long id, UserDTO userDTO) {
         User user = getUserById(id);
 
         // Cập nhật thông tin
-        user.setFullname(userDetails.getFullname());
-        user.setGender(userDetails.getGender());
-        user.setEmail(userDetails.getEmail());
-        user.setPhone(userDetails.getPhone());
-        user.setAddress(userDetails.getAddress());
-        user.setAvatar(userDetails.getAvatar());
-
+        user.setFullname(userDTO.getFullname());
+        user.setGender(userDTO.getGender());
+        user.setEmail(userDTO.getEmail());
+        user.setPhone(userDTO.getPhone());
+        user.setAddress(userDTO.getAddress());
+        user.setStatus(userDTO.getStatus());
         // Lưu vào database
         return userRepository.save(user);
     }
@@ -116,5 +123,34 @@ public class UserService {
     public void deleteUser(Long id) {
         User user = getUserById(id);
         userRepository.delete(user);
+    }
+
+    // Thay đổi mật khẩu
+    @Transactional
+    public MessageResponse changePassword(Long userId, ChangePasswordRequest request) {
+        // Lấy thông tin user
+        User user = getUserById(userId);
+
+        // Kiểm tra mật khẩu cũ có đúng không
+        if (!passwordEncoder.matches(request.getOldPassword(), user.getPassword())) {
+            return MessageResponse.builder()
+                    .message("Mật khẩu cũ không chính xác")
+                    .success(false)
+                    .build();
+        }
+
+        // Mã hóa mật khẩu mới
+        String encodedNewPassword = passwordEncoder.encode(request.getNewPassword());
+
+        // Cập nhật mật khẩu mới
+        user.setPassword(encodedNewPassword);
+
+        // Lưu vào database
+        userRepository.save(user);
+
+        return MessageResponse.builder()
+                .message("Thay đổi mật khẩu thành công")
+                .success(true)
+                .build();
     }
 }

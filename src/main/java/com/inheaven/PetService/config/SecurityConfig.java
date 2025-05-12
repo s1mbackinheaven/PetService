@@ -1,10 +1,14 @@
 package com.inheaven.PetService.config;
 
+import com.inheaven.PetService.security.JwtFilter;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -23,39 +27,50 @@ import java.util.Arrays;
 
 @Configuration // Đánh dấu là lớp cấu hình Spring
 @EnableWebSecurity // Bật bảo mật web
-@RequiredArgsConstructor // Tự động inject các dependency vào constructor
+// @EnableMethodSecurity(prePostEnabled = true) // Bật tính năng bảo mật method
+// (cho phép sử dụng @PreAuthorize)
+@RequiredArgsConstructor // Tự động inject các dependency
 public class SecurityConfig {
+    private static final Logger logger = LoggerFactory.getLogger(SecurityConfig.class);
 
-    @Lazy // Lazy load JwtFilter để tránh circular dependency
     private final JwtFilter jwtFilter; // Filter kiểm tra JWT trong request
     private final CustomUserDetailsService userDetailsService; // Service để load user
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http
-                .csrf(csrf -> csrf.disable()) // Tắt CSRF vì chúng ta sử dụng JWT
-                .cors(cors -> cors.configurationSource(corsConfigurationSource())) // Cấu hình CORS
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/user/login", "/api/user/register",
-                                "/swagger-ui.html",
-                                "/swagger-ui/**",
-                                "/v3/api-docs/**",
-                                "/api-docs/**")
-                        .permitAll() // Cho phép truy cập các endpoint Swagger UI
-                        .requestMatchers("/api/admin/**").hasRole("ADMIN") // Yêu cầu role ADMIN cho các endpoint admin
-                        .anyRequest().authenticated()) // Yêu cầu xác thực cho các endpoint còn lại
-                .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // Không sử dụng
-                                                                                                        // session
+        SecurityFilterChain chain = http
+                .csrf(csrf -> {
+                    csrf.disable();
+                }) // Tắt CSRF vì chúng ta sử dụng JWT
+                .cors(cors -> {
+                    cors.configurationSource(corsConfigurationSource());
+                }) // Cấu hình CORS
+                .authorizeHttpRequests(auth -> {
+                    auth.anyRequest().permitAll(); // Cho phép truy cập tất cả các endpoint mà không cần xác thực
+                })
+                .sessionManagement(sess -> {
+                    sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+                }) // Không sử dụng session
+                .authenticationProvider(authenticationProvider()) // Cấu hình authentication provider
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class) // Thêm JWT filter trước filter
                                                                                         // mặc định
                 .build();
+
+        return chain;
+    }
+
+    @Bean
+    public AuthenticationProvider authenticationProvider() {
+        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+        authProvider.setUserDetailsService(userDetailsService);
+        authProvider.setPasswordEncoder(passwordEncoder());
+        return authProvider;
     }
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("*")); // Cho phép tất cả các origin (có thể thay đổi theo nhu
-                                                             // cầu)
+        configuration.setAllowedOrigins(Arrays.asList("*")); // Cho phép tất cả các origin
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS")); // Cho phép các
                                                                                                    // phương thức HTTP
         configuration.setAllowedHeaders(Arrays.asList("*")); // Cho phép tất cả các header

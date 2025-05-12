@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 @Entity // Đánh dấu đây là một entity (bảng trong DB)
 @Data // Lombok: tự động tạo getter, setter, toString, equals, hashcode
 @NoArgsConstructor // Tạo constructor mặc định
@@ -25,6 +27,16 @@ public class User {
     private String address;
     private String avatar;
     private String password; // Mật khẩu của người dùng (sẽ mã hóa)
+    private String experience;
     private String status;
+    // private Date created = new Date(); // Thời gian tạo user, mặc định là thời
+    // gian hiện tại
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date created; // Trường này sẽ tự động lưu thời gian hiện tại
 
+    @PrePersist
+    public void prePersist() {
+        // Gán thời gian hiện tại cho trường created trước khi lưu
+        this.created = new Date();
+    }
 }
