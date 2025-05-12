@@ -9,6 +9,9 @@ COPY pom.xml .
 COPY mvnw .
 COPY .mvn .mvn
 
+# Cấp quyền thực thi cho mvnw
+RUN chmod +x ./mvnw
+
 # Tải các dependencies trước (sẽ được cache nếu pom.xml không thay đổi)
 RUN ./mvnw dependency:go-offline -B
 
