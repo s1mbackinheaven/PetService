@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.inheaven.PetService.PetServiceApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.713 s -- in com.inheaven.PetService.PetServiceApplicationTests

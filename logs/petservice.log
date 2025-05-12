@@ -1,0 +1,73 @@
+2025-05-13T00:01:15.222+07:00  INFO 34656 --- [PetService] [main] c.i.PetService.PetServiceApplication     : Starting PetServiceApplication using Java 23.0.1 with PID 34656 (F:\MyWorldSpace\PetService\Backend\PetService\PetService\target\classes started by Asus in F:\MyWorldSpace\PetService\Backend\PetService\PetService)
+2025-05-13T00:01:15.230+07:00 DEBUG 34656 --- [PetService] [main] c.i.PetService.PetServiceApplication     : Running with Spring Boot v3.2.3, Spring v6.1.4
+2025-05-13T00:01:15.232+07:00  INFO 34656 --- [PetService] [main] c.i.PetService.PetServiceApplication     : No active profile set, falling back to 1 default profile: "default"
+2025-05-13T00:01:16.891+07:00  INFO 34656 --- [PetService] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-05-13T00:01:16.957+07:00  INFO 34656 --- [PetService] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 58 ms. Found 8 JPA repository interfaces.
+2025-05-13T00:01:17.389+07:00  INFO 34656 --- [PetService] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-05-13T00:01:17.400+07:00  INFO 34656 --- [PetService] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-13T00:01:17.400+07:00  INFO 34656 --- [PetService] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2025-05-13T00:01:17.448+07:00  INFO 34656 --- [PetService] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-13T00:01:17.448+07:00  INFO 34656 --- [PetService] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2175 ms
+2025-05-13T00:01:17.555+07:00  INFO 34656 --- [PetService] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-05-13T00:01:17.631+07:00  INFO 34656 --- [PetService] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
+2025-05-13T00:01:17.668+07:00  INFO 34656 --- [PetService] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-05-13T00:01:17.868+07:00  INFO 34656 --- [PetService] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-05-13T00:01:17.893+07:00  INFO 34656 --- [PetService] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-05-13T00:01:19.699+07:00  INFO 34656 --- [PetService] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2976ef56
+2025-05-13T00:01:19.700+07:00  INFO 34656 --- [PetService] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-05-13T00:01:19.793+07:00  WARN 34656 --- [PetService] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-05-13T00:01:19.793+07:00  WARN 34656 --- [PetService] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-05-13T00:01:20.651+07:00  INFO 34656 --- [PetService] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-05-13T00:01:24.789+07:00  INFO 34656 --- [PetService] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-05-13T00:01:25.033+07:00 DEBUG 34656 --- [PetService] [main] c.i.PetService.security.JwtFilter        : Filter 'jwtFilter' configured for use
+2025-05-13T00:01:25.078+07:00  INFO 34656 --- [PetService] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-05-13T00:01:25.742+07:00  WARN 34656 --- [PetService] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-05-13T00:01:25.941+07:00  INFO 34656 --- [PetService] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@3f707d71, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3697cfee, org.springframework.security.web.context.SecurityContextHolderFilter@5a54d05f, org.springframework.security.web.header.HeaderWriterFilter@496203da, org.springframework.web.filter.CorsFilter@3a7f9efc, org.springframework.security.web.authentication.logout.LogoutFilter@ed6d97f, com.inheaven.PetService.security.JwtFilter@5e97da56, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@71878833, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4ba7dfce, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7e5e568e, org.springframework.security.web.session.SessionManagementFilter@218da1f9, org.springframework.security.web.access.ExceptionTranslationFilter@18ad543b, org.springframework.security.web.access.intercept.AuthorizationFilter@31b70b2a]
+2025-05-13T00:01:26.193+07:00  WARN 34656 --- [PetService] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2025-05-13T00:01:26.196+07:00  INFO 34656 --- [PetService] [main] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-05-13T00:01:26.198+07:00  INFO 34656 --- [PetService] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-05-13T00:01:26.691+07:00  INFO 34656 --- [PetService] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-05-13T00:01:26.700+07:00  INFO 34656 --- [PetService] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-05-13T00:01:26.712+07:00 ERROR 34656 --- [PetService] [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+2025-05-13T00:01:39.308+07:00  INFO 29744 --- [PetService] [main] c.i.PetService.PetServiceApplication     : Starting PetServiceApplication using Java 23.0.1 with PID 29744 (F:\MyWorldSpace\PetService\Backend\PetService\PetService\target\classes started by Asus in F:\MyWorldSpace\PetService\Backend\PetService\PetService)
+2025-05-13T00:01:39.309+07:00 DEBUG 29744 --- [PetService] [main] c.i.PetService.PetServiceApplication     : Running with Spring Boot v3.2.3, Spring v6.1.4
+2025-05-13T00:01:39.310+07:00  INFO 29744 --- [PetService] [main] c.i.PetService.PetServiceApplication     : No active profile set, falling back to 1 default profile: "default"
+2025-05-13T00:01:39.889+07:00  INFO 29744 --- [PetService] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-05-13T00:01:39.949+07:00  INFO 29744 --- [PetService] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 54 ms. Found 8 JPA repository interfaces.
+2025-05-13T00:01:40.296+07:00  INFO 29744 --- [PetService] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-05-13T00:01:40.303+07:00  INFO 29744 --- [PetService] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-13T00:01:40.304+07:00  INFO 29744 --- [PetService] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2025-05-13T00:01:40.343+07:00  INFO 29744 --- [PetService] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-13T00:01:40.343+07:00  INFO 29744 --- [PetService] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 993 ms
+2025-05-13T00:01:40.443+07:00  INFO 29744 --- [PetService] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-05-13T00:01:40.482+07:00  INFO 29744 --- [PetService] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
+2025-05-13T00:01:40.507+07:00  INFO 29744 --- [PetService] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-05-13T00:01:40.679+07:00  INFO 29744 --- [PetService] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-05-13T00:01:40.700+07:00  INFO 29744 --- [PetService] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-05-13T00:01:41.356+07:00  INFO 29744 --- [PetService] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5402612e
+2025-05-13T00:01:41.358+07:00  INFO 29744 --- [PetService] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-05-13T00:01:41.432+07:00  WARN 29744 --- [PetService] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-05-13T00:01:41.433+07:00  WARN 29744 --- [PetService] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-05-13T00:01:42.200+07:00  INFO 29744 --- [PetService] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-05-13T00:01:43.755+07:00  INFO 29744 --- [PetService] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-05-13T00:01:43.976+07:00 DEBUG 29744 --- [PetService] [main] c.i.PetService.security.JwtFilter        : Filter 'jwtFilter' configured for use
+2025-05-13T00:01:44.018+07:00  INFO 29744 --- [PetService] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-05-13T00:01:44.629+07:00  WARN 29744 --- [PetService] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-05-13T00:01:44.804+07:00  INFO 29744 --- [PetService] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@6499fda5, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7f210da5, org.springframework.security.web.context.SecurityContextHolderFilter@ed6d97f, org.springframework.security.web.header.HeaderWriterFilter@6b0dc462, org.springframework.web.filter.CorsFilter@135de93b, org.springframework.security.web.authentication.logout.LogoutFilter@118e24af, com.inheaven.PetService.security.JwtFilter@1415f18d, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@13dff835, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7682b160, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6d1953e4, org.springframework.security.web.session.SessionManagementFilter@4b9fd79, org.springframework.security.web.access.ExceptionTranslationFilter@1a6d072e, org.springframework.security.web.access.intercept.AuthorizationFilter@725d3fcc]
+2025-05-13T00:01:45.027+07:00  INFO 29744 --- [PetService] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2025-05-13T00:01:45.032+07:00  INFO 29744 --- [PetService] [main] c.i.PetService.PetServiceApplication     : Started PetServiceApplication in 6.019 seconds (process running for 6.481)
